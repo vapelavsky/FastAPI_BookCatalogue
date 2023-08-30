@@ -78,9 +78,6 @@ async def get_book(book_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Book not found")
     return book
 
-
-# ... (other imports and configurations)
-
 @app.patch("/books/{book_id}", response_model=Book)
 async def update_book(book_id: int, book_update: UpdateBook, db: Session = Depends(get_db)):
     db_book = db.query(BookModel).filter(BookModel.id == book_id).first()
